@@ -1,0 +1,469 @@
+/* ===== CSS VARIABLES ===== */
+:root {
+    /* Night theme - Soft colors that don't strain eyes */
+    --color-primary: #ff8fab;
+    --color-secondary: #ffc1d4;
+    --color-accent: #ffb74d;
+    --color-dark: #0a0a0a;
+    --color-dark-soft: #1a1a1a;
+    --color-dark-lighter: #2a2a2a;
+    --color-light: #ffffff;
+    --color-text-light: #e0e0e0;
+    --color-text-muted: #a0a0a0;
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.5);
+    --shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.7);
+    --glow-soft: 0 0 20px rgba(255, 143, 171, 0.3);
+    --glow-strong: 0 0 40px rgba(255, 143, 171, 0.5);
+}
+
+/* ===== RESET & BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text-light);
+    background: var(--color-dark);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* ===== STATION LAYOUT ===== */
+.station {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    overflow: hidden;
+}
+
+.station-content {
+    width: 100%;
+    max-width: 500px;
+    z-index: 2;
+    position: relative;
+}
+
+/* ===== ESTACIÓN 1: EL INICIO ===== */
+.station-background {
+    background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-dark-soft) 50%, var(--color-dark) 100%);
+    position: relative;
+}
+
+.station-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at top, rgba(255, 143, 171, 0.1) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.fade-in-blur {
+    opacity: 0;
+    filter: blur(20px);
+    transform: scale(0.95);
+    transition: var(--transition-smooth);
+}
+
+.fade-in-blur.active {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+}
+
+.image-container {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-strong), var(--glow-soft);
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 143, 171, 0.2);
+}
+
+.main-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+.text-content {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: var(--transition-smooth);
+    transition-delay: 0.3s;
+}
+
+.text-content.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.lyric-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--color-text-light);
+    font-weight: 300;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8), var(--glow-soft);
+    font-style: italic;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+    opacity: 0.8;
+    animation: bounce 2s infinite;
+}
+
+.scroll-indicator span {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+    color: var(--color-text-muted);
+}
+
+.scroll-arrow {
+    font-size: 2rem;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translate(-50%, 0);
+    }
+
+    50% {
+        transform: translate(-50%, 10px);
+    }
+}
+
+/* ===== ESTACIÓN 2: LA DIVERSIÓN ===== */
+
+.station-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--color-light);
+    text-align: center;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: var(--transition-smooth);
+    text-shadow: var(--glow-soft);
+}
+
+.station-title.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.photo-item {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft), var(--glow-soft);
+    opacity: 0;
+    transform: scale(0.5) rotate(-10deg);
+    transition: var(--transition-smooth);
+    border: 1px solid rgba(255, 143, 171, 0.2);
+}
+
+.photo-item.active {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.photo-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.photo-item:hover img {
+    transform: scale(1.1);
+}
+
+/* ===== ESTACIÓN 3: LA CONEXIÓN ===== */
+
+.parallax-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.parallax-bg {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    transition: transform 0.5s ease-out;
+}
+
+.zoom-slow {
+    opacity: 0;
+    transform: scale(1.3);
+    transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.zoom-slow.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.portrait {
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    max-height: 500px;
+}
+
+.lyric-text.romantic {
+    font-size: 1.15rem;
+    font-weight: 400;
+    line-height: 2;
+}
+
+/* ===== ESTACIÓN 4: EL PUENTE ===== */
+
+.fade-dark {
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.fade-dark.active {
+    opacity: 1;
+}
+
+.dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.text-content.bridge {
+    transition-delay: 0.6s;
+}
+
+.bridge-text {
+    font-size: 1.3rem;
+    color: var(--color-light);
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-shadow: var(--glow-soft);
+}
+
+/* ===== ESTACIÓN 5: LA PREGUNTA ===== */
+.station-5::before {
+    background: radial-gradient(ellipse at center, rgba(255, 143, 171, 0.15) 0%, transparent 60%);
+}
+
+.question-container {
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: var(--transition-smooth);
+}
+
+.question-container.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.main-question {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: var(--color-light);
+    margin-bottom: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: var(--glow-strong);
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.answer-btn {
+    padding: 1.2rem 2rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-soft);
+    font-family: var(--font-body);
+    letter-spacing: 1px;
+}
+
+.btn-yes {
+    background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+    color: white;
+}
+
+.btn-obviously {
+    background: linear-gradient(135deg, #ffa502 0%, #ff6348 100%);
+    color: white;
+}
+
+.answer-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.answer-btn:active {
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* ===== CELEBRATION OVERLAY ===== */
+.celebration-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.celebration-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.celebration-content {
+    text-align: center;
+    z-index: 1001;
+    padding: 2rem;
+    max-width: 500px;
+}
+
+.celebration-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 1rem;
+    animation: celebrate 0.6s ease-out;
+}
+
+.celebration-message {
+    font-size: 1.2rem;
+    color: #ffeaa7;
+    animation: celebrate 0.6s ease-out 0.2s both;
+}
+
+@keyframes celebrate {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 480px) {
+    .station {
+        padding: 1.5rem 1rem;
+    }
+
+    .main-question {
+        font-size: 2rem;
+    }
+
+    .lyric-text {
+        font-size: 1rem;
+    }
+
+    .photo-item img {
+        height: 150px;
+    }
+
+    .answer-btn {
+        font-size: 1.1rem;
+        padding: 1rem 1.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .station-content {
+        max-width: 600px;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .button-container {
+        flex-direction: row;
+        justify-content: center;
+    }
+}

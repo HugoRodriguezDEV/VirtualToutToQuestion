@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Una Historia Especial 💕</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Estación 1: El Inicio (Fade In) -->
+    <section class="station station-background" id="station-1">
+        <div class="station-content">
+            <div class="image-container fade-in-blur">
+                <img src="img/IMG-20260126-WA0016.jpg" alt="Nuestro primer momento" class="main-image">
+                <div class="image-overlay"></div>
+            </div>
+            <div class="text-content">
+                <p class="lyric-text">
+                    "En un momento casual, nuestras vidas se cruzaron<br>
+                    Sin saber que ese día, algo mágico comenzó"
+                </p>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Desliza para continuar</span>
+            <div class="scroll-arrow">↓</div>
+        </div>
+    </section>
+
+    <!-- Estación 2: La Diversión (Pop-up) -->
+    <section class="station station-background" id="station-2">
+        <div class="station-content">
+            <h2 class="station-title pop-in">Momentos Inolvidables</h2>
+            <div class="photo-grid">
+                <div class="photo-item pop-in" style="animation-delay: 0.1s;">
+                    <img src="img/IMG-20260110-WA0022.jpg" alt="Diversión juntos">
+                </div>
+                <div class="photo-item pop-in" style="animation-delay: 0.2s;">
+                    <img src="img/IMG-20260110-WA0023.jpg" alt="Risas compartidas">
+                </div>
+                <div class="photo-item pop-in" style="animation-delay: 0.3s;">
+                    <img src="img/IMG-20260119-WA0070.jpg" alt="Aventuras">
+                </div>
+                <div class="photo-item pop-in" style="animation-delay: 0.4s;">
+                    <img src="img/IMG-20260124-WA0018.jpg" alt="Memes internos">
+                </div>
+            </div>
+            <div class="text-content">
+                <p class="lyric-text">
+                    "Cada risa, cada instante, cada loco momento<br>
+                    Contigo el tiempo vuela, y nunca me arrepiento"
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estación 3: La Conexión (Zoom Lento / Parallax) -->
+    <section class="station station-background" id="station-3">
+        <div class="parallax-container">
+            <div class="parallax-bg"></div>
+            <div class="station-content">
+                <div class="image-container zoom-slow">
+                    <img src="img/IMG-20260126-WA0018.jpg" alt="Tu belleza" class="main-image portrait">
+                </div>
+                <div class="text-content">
+                    <p class="lyric-text romantic">
+                        "Admiro tu sonrisa, tu forma de ser<br>
+                        En tus ojos encuentro todo lo que quiero ver<br>
+                        Eres luz en mi camino, mi razón de creer"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estación 4: El Puente (Transición) -->
+    <section class="station station-background" id="station-4">
+        <div class="station-content">
+            <div class="image-container fade-dark">
+                <img src="img/IMG-20260126-WA0019.jpg" alt="Nuestro futuro" class="main-image">
+                <div class="dark-overlay"></div>
+            </div>
+            <div class="text-content bridge">
+                <p class="bridge-text">
+                    Todo esto me lleva a una sola pregunta...
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estación 5: La Pregunta (Interacción) -->
+    <section class="station station-background" id="station-5">
+        <div class="station-content">
+            <div class="image-container">
+                <img src="img/IMG-20260126-WA0027.jpg" alt="Nosotros" class="main-image">
+            </div>
+            <div class="question-container">
+                <h1 class="main-question">
+                    ¿Quieres ser mi novia?
+                </h1>
+                <div class="button-container">
+                    <button class="answer-btn btn-yes" id="btn-yes">
+                        💕 SÍ 💕
+                    </button>
+                    <button class="answer-btn btn-obviously" id="btn-obviously">
+                        ✨ CLARO QUE SÍ ✨
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Celebration Overlay -->
+    <div class="celebration-overlay" id="celebration">
+        <div class="celebration-content">
+            <h2 class="celebration-title">¡Sabía que dirías que sí! 🎉</h2>
+            <p class="celebration-message">Este es solo el comienzo de nuestra historia juntos ❤️</p>
+        </div>
+        <canvas id="confetti-canvas"></canvas>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
